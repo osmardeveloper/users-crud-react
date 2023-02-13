@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import { useForm } from 'react-hook-form';
 import "./styles/ModalForm.css"
+import swal from 'sweetalert2';
 
 const defaultValues =
 {
@@ -22,11 +23,31 @@ const ModalForm = ({
 
   const {register, handleSubmit, reset} = useForm()
 
+  const alertEdit = () => {
+    swal.fire({
+      title: "",
+      text: "Completed Edit",
+      icon: "success",
+      timer: "2500"
+    })
+  }
+  
+  const alertAdd = () => {
+    swal.fire({
+      title: "",
+      text: 'The User was Added Successfully',
+      icon: "success",
+      timer: "2500"
+    })
+  }
+
   const submit = (data) => {
     if(updatingUser){
-      updateUser(data, updatingUser.id)
+      updateUser(data, updatingUser.id);
+      alertEdit()
     } else {
-    createUser(data);
+      createUser(data);
+      alertAdd()
     }
     reset(defaultValues);
     setUpdatingUser()
@@ -50,8 +71,8 @@ const ModalForm = ({
       <form onSubmit={handleSubmit(submit)} className='modalForm__form'>
         <h3 className='modalForm__title'>{updatingUser ? "Edit user" : "New user"}</h3>
         <i onClick={handleClickClose} className='bx bx-x modalForm__x'></i>
-       <div className='modalForm__divflex'>
-       <i className='bx bxs-user modalForm__icon'></i>
+          <div className='modalForm__divflex'>
+          <i className='bx bxs-user modalForm__icon'></i>
         <div className='modalForm__divname'>
           <label className='modalForm__label' htmlFor="">First Name</label>
           <input className='modalForm__input' placeholder='First Name' type="text" {...register("first_name")} />
