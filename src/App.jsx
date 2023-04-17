@@ -5,7 +5,7 @@ import ModalForm from './components/ModalForm'
 import Navbar from './components/Navbar'
 import UsersList from './components/UsersList'
 
-const BASE_URL = "https://users-crud.academlo.tech/"
+const BASE_URL = "https://users-crud-backend-render.onrender.com/api/v1/users"
 
 function App() {
   const [users, setUsers] = useState([]);
