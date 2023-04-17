@@ -18,7 +18,7 @@ function App() {
 
   const createUser = (data) => {
     axios
-    .post(`${BASE_URL}users/`, data)
+    .post(`${BASE_URL}`, data)
     .then(() =>  { 
       getAllUsers()
       handleClickShowModal()
@@ -28,21 +28,21 @@ function App() {
 
   const getAllUsers = () => {
     axios
-    .get(`${BASE_URL}users/`)
+    .get(`${BASE_URL}`)
     .then((res) => setUsers(res.data))
     .catch((err => console.log(err)))
   }
 
   const deleteUser = (id) => {
     axios
-    .delete(`${BASE_URL}users/${id}/`)
+    .delete(`${BASE_URL}/${id}`)
     .then(() => getAllUsers())
     .catch((err => console.log(err)))
   }
 
   const updateUser = (data, id) => {
     axios
-    .patch(`${BASE_URL}users/${id}/`, data)
+    .patch(`${BASE_URL}/${id}`, data)
     .then(() => {
       getAllUsers()
       handleClickShowModal()
